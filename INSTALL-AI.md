@@ -98,14 +98,37 @@ head -1 README.md                    # 期望 "# <vault 名>"
 4. 让 Claude 跑 `/compile` 把 Inbox 编译成 Wiki 条目
 5. 问 Claude："最近有什么新信息？"
 
-### 可选推荐
+## 7. 主动询问：要不要接着装 L2 / L3 增强？
 
-README 底部有两节可以之后看：
+L1 已经可用。但还有 3 个可选增强，**主动问用户想装哪些**（一次性列清，让他挑，不要拆开问）：
 
-- **推荐插件**：Outliner / Advanced Tables 等，提升编辑体验
-- **进阶：图床 + 大文件备份**：粘贴截图自动上传、大文件 git 备份
+| 层 | 做什么 | 自动化程度 | 用户需做的 | 约耗时 |
+|---|---|---|---|---|
+| **L2 推荐插件** | Outliner / Advanced Tables 等提升编辑体验 | ~95% | 最后点一下 "Turn on community plugins" | 3 分钟 |
+| **L3 图床** | 粘贴截图自动上传到 GitHub public repo + jsdelivr CDN | ~90% | 首次启动 PicList 过 Gatekeeper；装 PicList 可能要 sudo 密码 | 10 分钟 |
+| **L3 大文件备份** | PDF / PPT 自动 git push 到 private repo | ~85% | Finder 右键绑定 Folder Action（3 次点击）；授权 Full Disk Access | 15 分钟 |
 
-hum 还能跟 cast（个人身份锚点系统）配合，但 cast 还在开发中，暂不提。
+**隐私提示**（提 L3 图床时一并说）：
+> L3 图床会把图片传到 **public GitHub repo**，全世界可访问（URL 不公开传播但理论上可爬取）。涉密/涉私截图不要贴。
+
+**问用户**："要接着装哪些？可选项：全要 / 只要 X / 只要 X+Y / 都跳过 / 过会再说。"
+
+### 根据选择续装
+
+按用户选的，**依次** fetch 对应文档并执行里面的步骤：
+
+- L2：`https://cdn.jsdelivr.net/gh/novaez/hum@main/INSTALL-AI-L2-plugins.md`
+- L3 图床：`https://cdn.jsdelivr.net/gh/novaez/hum@main/INSTALL-AI-L3-image-host.md`
+- L3 大文件备份：`https://cdn.jsdelivr.net/gh/novaez/hum@main/INSTALL-AI-L3-large-file-backup.md`
+
+每一份 fetch 后按里面的流程走到底，走完再问要不要开始下一个。**不要并行**——一份装完再开下一份，方便失败诊断。
+
+### 全部装完 / 用户跳过时
+
+告诉用户：
+
+- hum 可以跟 **cast**（个人身份锚点系统）配合，给你更"知道你是谁"的 AI 协作。cast 还在开发中，稳定后再告诉你怎么装。
+- 中途跳过的 L2/L3 以后随时可以装——对 AI 说"按 `<对应 URL>` 装 X"就行。URL 在 hum README 底部有列。
 
 ## 失败模式速查
 
