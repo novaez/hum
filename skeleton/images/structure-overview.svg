@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" width="800" height="280">
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+  </style>
+  <defs>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+    </marker>
+  </defs>
+  <rect width="800" height="280" fill="#ffffff"/>
+  <!-- Column headers -->
+  <text x="140" y="40" text-anchor="middle" fill="#111827" font-size="16" font-weight="600">捕获</text>
+  <text x="400" y="40" text-anchor="middle" fill="#111827" font-size="16" font-weight="600">积累</text>
+  <text x="660" y="40" text-anchor="middle" fill="#111827" font-size="16" font-weight="600">创作</text>
+  <line x1="40" y1="52" x2="240" y2="52" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="300" y1="52" x2="500" y2="52" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="560" y1="52" x2="760" y2="52" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="250" y1="145" x2="290" y2="145" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <line x1="510" y1="145" x2="550" y2="145" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+  <rect x="40" y="90" width="200" height="56" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1"/>
+  <text x="140" y="114" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">Inbox 📥</text>
+  <text x="140" y="132" text-anchor="middle" fill="#9ca3af" font-size="11">外部素材捕获</text>
+  <rect x="40" y="170" width="200" height="56" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="140" y="194" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">Journal 📓</text>
+  <text x="140" y="212" text-anchor="middle" fill="#9ca3af" font-size="11">个人碎片捕获</text>
+  <rect x="300" y="90" width="200" height="56" rx="6" fill="#fefce8" stroke="#fde68a" stroke-width="1"/>
+  <text x="400" y="114" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">Wiki 📖</text>
+  <text x="400" y="132" text-anchor="middle" fill="#9ca3af" font-size="11">参考资料，别人的知识</text>
+  <rect x="300" y="170" width="200" height="56" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="400" y="194" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">Garden 🌱</text>
+  <text x="400" y="212" text-anchor="middle" fill="#9ca3af" font-size="11">长青笔记，自己的洞察</text>
+  <rect x="560" y="90" width="200" height="56" rx="6" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="660" y="114" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">Projects 🎯</text>
+  <text x="660" y="132" text-anchor="middle" fill="#9ca3af" font-size="11">有终点的活跃项目</text>
+  <rect x="560" y="170" width="200" height="56" rx="6" fill="#fff1f2" stroke="#fecdd3" stroke-width="1"/>
+  <text x="660" y="194" text-anchor="middle" fill="#111827" font-size="14" font-weight="500">Areas 🔄</text>
+  <text x="660" y="212" text-anchor="middle" fill="#9ca3af" font-size="11">无终点的持续关注领域</text>
+</svg>
