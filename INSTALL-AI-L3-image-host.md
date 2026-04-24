@@ -114,14 +114,22 @@ PYEOF
 
 **注意**：跑这一段前要把 `PAT`、`GITHUB_USER`、`REPO_NAME` export 到环境变量。
 
-## 6. 重启 PicList
+## 6. 重启 PicList + **确认默认图床是 GitHub**
 
 ```bash
 # 再开一次，让新配置生效
 open -a PicList
 ```
 
-告诉用户：看菜单栏 PicList 图标是否活着；然后把窗口关了（不是 quit，只是关窗口），PicList 在后台跑，监听 36677 端口。
+告诉用户**两件事必须做**：
+
+1. 看菜单栏 PicList 图标是否活着；然后把窗口关了（不是 quit，只是关窗口），PicList 在后台跑，监听 36677 端口
+2. **在关窗口前：点开 PicList → 左侧栏 `PicBed` → `GitHub`**，**确认右上角状态是"已设为默认图床"**（或图床配置名字旁有 ★ / 勾 / 类似标记）
+   - 如果不是默认：手动点"设为默认图床"按钮（或右上的星标）
+   - **这一步漏了的常见表现**：粘贴图片时要么上传失败，要么上传到了别的图床（比如 PicList 默认的 smms）
+   - 即使 Python 脚本写了 `picBed.current = 'github'`，也建议**眼睛确认一遍** UI 显示一致——否则可能是 PicList 启动时用 GUI 缓存覆盖了 data.json
+
+> ⚠️ **历史教训**（2026-04-24 第 1 位朋友）：这一步漏了，跑到"粘贴截图测试"时才发现没上传到 GitHub。补上确认这一眼就能早发现。
 
 ## 7. 装 Obsidian 插件 + 写 plugin data.json
 
@@ -184,11 +192,14 @@ echo "✓ Obsidian 插件装好"
 - 粘贴瞬间 Obsidian 里出现的是 `![image.png](https://cdn.jsdelivr.net/gh/<用户>/<repo>@main/....png)` 这样的 URL
 - 打开 https://github.com/<用户>/<repo>，看到刚上传的图片文件
 
+**如果粘贴失败或图上传到了别的地方**：回第 6 步检查 PicList 的默认图床是不是 GitHub。
+
 ## 失败速查
 
 | 症状 | 原因 | 处理 |
 |---|---|---|
 | 粘贴后本地保留 png，URL 没变 | 插件没启用 / PicList 没在跑 | 检查 Obsidian 插件开关 + 菜单栏 PicList 图标是否在 |
+| 粘贴后上传成功但 URL 不是 jsdelivr / 出在别的图床（如 smms） | PicList 默认图床不是 GitHub | 打开 PicList → PicBed → GitHub → 设为默认图床（第 6 步的常见遗漏） |
 | 粘贴后报 "upload failed" | PicList 配置问题 | 打开 PicList → Upload → 手动拖一张图看报错 |
 | PicList 的 Upload API Service 没启动 | `settings.server.enable` 没生效 | 在 PicList GUI 里 Settings → Advanced → Server Settings → Upload API Service Settings，手动开 toggle |
 | 图床 repo 是 private | jsdelivr 服务不到 | 去 GitHub repo settings 改 Public |

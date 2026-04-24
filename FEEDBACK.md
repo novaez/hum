@@ -32,3 +32,18 @@
 - 开聊时问 Claude 的第一个问题？——未知
 
 下次陪装时补上这些行为数据。
+
+### L2 + L3 图床继续（同日）
+
+朋友继续从 L2 跑到 L3 图床：
+
+**L2**（推荐插件 AI 代劳）：0 摩擦跑通
+
+**L3 图床**（AI 代劳）：跑通**但踩坑**——
+- **摩擦**：AI / 朋友漏了"把 GitHub 设为默认图床"这一步。PicList 默认的 picbed 是 smms；我们的 Python 脚本写了 `picBed.current = 'github'` 到 data.json，但 **PicList 启动后可能用 GUI 缓存覆盖了 data.json 的值**——结果朋友粘贴截图时没上传到 GitHub
+- **修复**：`INSTALL-AI-L3-image-host.md` 第 6 步加强：
+  1. 重启 PicList 后**必须** GUI 确认 "GitHub 是默认图床"
+  2. 不是的话手动点"设为默认"
+  3. 失败速查表加一条"粘贴后 URL 不是 jsdelivr"的诊断
+- **为什么值得固化**：这是"脚本写了也不保证生效"的典型坑。JSON 合并之后的 UI 应用验证不能省
+- **根因深挖（TODO）**：找出 PicList 到底在什么条件下会忽略 data.json 的 `picBed.current`——可能是进程没真正退干净、或有另一个 state 文件、或启动时序问题。以后有时间查一下 PicList 源码
