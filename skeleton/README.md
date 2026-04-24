@@ -100,10 +100,17 @@ Obsidian 的 Community Plugins 里搜索安装。都不是必需，按需挑。
 - `Outliner`：列表大纲操作（Tab 缩进、拖动重排）
 - `Advanced Tables`（即 `table-editor-obsidian`）：表格编辑体验升级
 
+**AI 协作**
+- `Claudian`（beta 插件，不在 Community Plugins 注册表；直接从 [GitHub release](https://github.com/YishenTu/claudian/releases/latest) 下载 main.js / manifest.json / styles.css 到 `.obsidian/plugins/claudian/`，也可以让 AI 代劳装）：在 Obsidian 里嵌入 Claude Code / Codex 作为 AI 协作者
+
 **按需选**
 - `Obsidian Zoom`：Zoom 到某个 heading 或段落专注编辑
 - `PDF++`（即 `pdf-plus`）：PDF 高亮、批注、引用
 - `Marp Slides`（即 `marp`）：Markdown 做 PPT
+
+## 浏览器扩展推荐
+
+- [**Obsidian Web Clipper**](https://obsidian.md/clipper)：浏览网页时一键把内容存入 vault。配成默认扔进 `10 Inbox 📥/`，扔文章比复制粘贴顺得多
 
 ## 进阶：图床 + 大文件备份
 
