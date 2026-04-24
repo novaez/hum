@@ -90,7 +90,10 @@ REPO = os.environ['REPO_NAME']
 PAT  = os.environ['PAT']
 
 d.setdefault('picBed', {})
+# 注意：PicList 选图床的优先级是 uploader > current > 'smms' fallback
+# 必须同时设 current 和 uploader，否则 uploader 残留值会覆盖 current
 d['picBed']['current'] = 'github'
+d['picBed']['uploader'] = 'github'
 d['picBed']['github'] = {
     '_configName': 'GitHub Image Bed',
     'repo': f'{USER}/{REPO}',
@@ -114,22 +117,18 @@ PYEOF
 
 **注意**：跑这一段前要把 `PAT`、`GITHUB_USER`、`REPO_NAME` export 到环境变量。
 
-## 6. 重启 PicList + **确认默认图床是 GitHub**
+## 6. 重启 PicList
 
 ```bash
 # 再开一次，让新配置生效
 open -a PicList
 ```
 
-告诉用户**两件事必须做**：
+告诉用户：看菜单栏 PicList 图标是否活着；然后把窗口关了（不是 quit，只是关窗口），PicList 在后台跑，监听 36677 端口。
 
-1. 看菜单栏 PicList 图标是否活着；然后把窗口关了（不是 quit，只是关窗口），PicList 在后台跑，监听 36677 端口
-2. **在关窗口前：点开 PicList → 左侧栏 `PicBed` → `GitHub`**，**确认右上角状态是"已设为默认图床"**（或图床配置名字旁有 ★ / 勾 / 类似标记）
-   - 如果不是默认：手动点"设为默认图床"按钮（或右上的星标）
-   - **这一步漏了的常见表现**：粘贴图片时要么上传失败，要么上传到了别的图床（比如 PicList 默认的 smms）
-   - 即使 Python 脚本写了 `picBed.current = 'github'`，也建议**眼睛确认一遍** UI 显示一致——否则可能是 PicList 启动时用 GUI 缓存覆盖了 data.json
+**可选 sanity check**：点开 PicList → 左侧栏 `PicBed` → 确认 GitHub 显示为默认图床（名字旁有 ★ 或"已设为默认"）。按上面的脚本写法（同时设 `current` 和 `uploader`），这一步应该自动搞定，但多看一眼没坏处。
 
-> ⚠️ **历史教训**（2026-04-24 第 1 位朋友）：这一步漏了，跑到"粘贴截图测试"时才发现没上传到 GitHub。补上确认这一眼就能早发现。
+> ℹ️ **这条一致性由来**（2026-04-24）：第一版脚本只写 `picBed.current`，漏了 `picBed.uploader`。PicList 选图床的优先级是 `uploader > current > 'smms' fallback`（见 [源码](https://github.com/Kuingsmile/PicList/blob/master/src/main/utils/getPicBeds.ts#L6)），uploader 残留旧值会覆盖 current。现在同时写两个，根因已修。
 
 ## 7. 装 Obsidian 插件 + 写 plugin data.json
 

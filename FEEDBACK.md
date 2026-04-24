@@ -46,4 +46,9 @@
   2. 不是的话手动点"设为默认"
   3. 失败速查表加一条"粘贴后 URL 不是 jsdelivr"的诊断
 - **为什么值得固化**：这是"脚本写了也不保证生效"的典型坑。JSON 合并之后的 UI 应用验证不能省
-- **根因深挖（TODO）**：找出 PicList 到底在什么条件下会忽略 data.json 的 `picBed.current`——可能是进程没真正退干净、或有另一个 state 文件、或启动时序问题。以后有时间查一下 PicList 源码
+- **根因深挖（已完成 2026-04-24）**：不是时序 / 缓存 / 第二 state 文件的问题——是**脚本漏写字段**：
+  - PicList 决定用哪个图床的优先级是 `picBed.uploader > picBed.current > 'smms' fallback`（见 `src/main/utils/getPicBeds.ts:6` 等 4 处一致写法）
+  - 第一版 Python 脚本只写了 `picBed.current = 'github'`，没动 `picBed.uploader`——`uploader` 残留为 PicList 默认值 `'smms'`（或之前用户手动选过的值），优先级更高，覆盖了我们的 `current`
+  - GUI 操作"设为默认图床"会**同时**更新 `current` 和 `uploader`——所以 liushu 的 data.json 是一致的，但脚本生成的不是
+  - **修复**：脚本里同时设 `d['picBed']['uploader'] = 'github'`。根因彻底消除，不需要再让用户 GUI 确认
+  - 第 6 步的"必须 GUI 确认"降级为"可选 sanity check"
